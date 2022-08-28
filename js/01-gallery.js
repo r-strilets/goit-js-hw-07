@@ -1,7 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-console.log(galleryItems);
 // Створи галерею з можливістю кліку по її елементах і перегляду повнорозмірного зображення у модальному вікні. Подивися демо відео роботи галереї.
 // Виконуй це завдання у файлах 01-gallery.html і 01-gallery.js. Розбий його на декілька підзавдань:
 
@@ -31,6 +30,7 @@ console.log(galleryItems);
 // Наступний функціонал не обов'язковий для здавання завдання, але буде хорошою додатковою практикою.
 
 // Додай закриття модального вікна після натискання клавіші Escape. Зроби так, щоб прослуховування клавіатури було тільки доти, доки відкрите модальне вікно. Бібліотекаи basicLightbox містить метод для програмного закриття модального вікна.
+const bodyElement = document.querySelector("body");
 const gallery = document.querySelector(".gallery");
 
 function createGallery(arrayOfImages) {
@@ -57,10 +57,23 @@ function createGallery(arrayOfImages) {
 gallery.innerHTML = createGallery(galleryItems);
 
 gallery.addEventListener("click", onClickModalOpen);
+
 function onClickModalOpen(e) {
   e.preventDefault();
-  const instance = basicLightbox.create(`
+  if (e.target.classList.contains("gallery__image")) {
+    const instance = basicLightbox.create(`
     <img src="${e.target.dataset.source}">
-`);
-  instance.show();
+    `);
+    instance.show();
+    bodyElement.addEventListener("keydown", closeModal);
+  }
+}
+
+function closeModal(e) {
+  // console.log(e);
+  const modalOpenImage = document.querySelector(".basicLightbox");
+  if (e.code === "Escape") {
+    modalOpenImage.remove();
+    bodyElement.removeEventListener("keydown", closeModal);
+  }
 }
