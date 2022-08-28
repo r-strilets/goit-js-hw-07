@@ -70,10 +70,13 @@ function onClickModalOpen(e) {
 }
 
 function closeModal(e) {
-  // console.log(e);
+  console.log(e);
   const modalOpenImage = document.querySelector(".basicLightbox");
   if (e.code === "Escape") {
     modalOpenImage.remove();
+    bodyElement.removeEventListener("keydown", closeModal);
+  }
+  if (!modalOpenImage) {
     bodyElement.removeEventListener("keydown", closeModal);
   }
 }
