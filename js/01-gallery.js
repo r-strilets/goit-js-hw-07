@@ -1,6 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 
-const bodyElement = document.querySelector("body");
+// const bodyElement = document.querySelector("body");
 const gallery = document.querySelector(".gallery");
 
 function createGallery(arrayOfImages) {
@@ -24,26 +24,32 @@ function createGallery(arrayOfImages) {
 gallery.insertAdjacentHTML("beforeend", createGallery(galleryItems));
 
 gallery.addEventListener("click", onClickModalOpen);
-
+let instance = null;
 function onClickModalOpen(e) {
   e.preventDefault();
   if (e.target.classList.contains("gallery__image")) {
-    const instance = basicLightbox.create(`
+    instance = basicLightbox.create(
+      `
     <img src="${e.target.dataset.source}">
-    `);
+    `,
+      {
+        onShow: () => {
+          document.addEventListener("keydown", closeModal);
+        },
+
+        onClose: () => {
+          document.removeEventListener("keydown", closeModal);
+        },
+      }
+    );
     instance.show();
-    bodyElement.addEventListener("keydown", closeModal);
   }
 }
 
 function closeModal(e) {
   console.log(e);
-  const modalOpenImage = document.querySelector(".basicLightbox");
+
   if (e.code === "Escape") {
-    modalOpenImage.remove();
-    bodyElement.removeEventListener("keydown", closeModal);
-  }
-  if (!modalOpenImage) {
-    bodyElement.removeEventListener("keydown", closeModal);
+    instance.close();
   }
 }
