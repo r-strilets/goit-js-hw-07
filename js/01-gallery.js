@@ -50,11 +50,8 @@ function createGallery(arrayOfImages) {
     .join("");
   return newGalleryItems;
 }
-// const newGallery = createGallery(galleryItems);
-// console.log(typeof newGallery);
-// gallery.insertAdjacentElement("beforeend", newGallery);
 
-gallery.innerHTML = createGallery(galleryItems);
+gallery.insertAdjacentHTML("beforeend", createGallery(galleryItems));
 
 gallery.addEventListener("click", onClickModalOpen);
 
