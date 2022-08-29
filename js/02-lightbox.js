@@ -27,5 +27,8 @@ function createGallery(arrayOfImages) {
 }
 gallery.innerHTML = createGallery(galleryItems);
 
-let galleryBox = new SimpleLightbox(".gallery a");
+let galleryBox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
 galleryBox.on("show.simplelightbox", function () {});
