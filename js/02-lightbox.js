@@ -1,7 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-console.log(galleryItems);
 // Створення і рендер розмітки на підставі масиву даних galleryItems і наданого шаблону елемента галереї. Використовуй готовий код з першого завдання.
 // Підключення скрипту і стилів бібліотеки, використовуючи CDN сервіс cdnjs. Необхідно додати посилання на два файли: simple-lightbox.min.js і simple-lightbox.min.css.
 // Ініціалізація бібліотеки після створення і додання елементів галереї у div.gallery. Для цього ознайомся з документацією SimpleLightbox - насамперед секції «Usage» і «Markup».
@@ -27,7 +26,6 @@ function createGallery(arrayOfImages) {
   return newGalleryItems;
 }
 gallery.innerHTML = createGallery(galleryItems);
-console.log(gallery);
 
 let galleryBox = new SimpleLightbox(".gallery a");
 galleryBox.on("show.simplelightbox", function () {});
