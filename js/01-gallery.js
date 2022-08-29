@@ -47,8 +47,6 @@ function onClickModalOpen(e) {
 }
 
 function closeModal(e) {
-  console.log(e);
-
   if (e.code === "Escape") {
     instance.close();
   }
