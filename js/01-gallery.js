@@ -1,6 +1,5 @@
 import { galleryItems } from "./gallery-items.js";
 
-// const bodyElement = document.querySelector("body");
 const gallery = document.querySelector(".gallery");
 
 function createGallery(arrayOfImages) {
@@ -24,7 +23,9 @@ function createGallery(arrayOfImages) {
 gallery.insertAdjacentHTML("beforeend", createGallery(galleryItems));
 
 gallery.addEventListener("click", onClickModalOpen);
+
 let instance = null;
+
 function onClickModalOpen(e) {
   e.preventDefault();
   if (e.target.classList.contains("gallery__image")) {
